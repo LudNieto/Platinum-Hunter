@@ -1,9 +1,10 @@
-const { db } = require('../config/firebase');
+import {db} from '../config/firebase.js';
 
 // Obtener todos los juegos
-exports.getAllGames = async (req, res) => {
+export const getAllGames = async (req, res) => {
   try {
     const gamesSnapshot = await db.collection('games').get();
+    console.log(gamesSnapshot);
     const games = gamesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     res.status(200).json(games);
   } catch (error) {
@@ -12,7 +13,7 @@ exports.getAllGames = async (req, res) => {
 };
 
 // Obtener un juego por ID
-exports.getGameById = async (req, res) => {
+export const getGameById = async (req, res) => {
   try {
     const gameId = req.params.gameId;
     const gameDoc = await db.collection('games').doc(gameId).get();
@@ -26,7 +27,7 @@ exports.getGameById = async (req, res) => {
 };
 
 // Crear un juego nuevo
-exports.createGame = async (req, res) => {
+export const createGame = async (req, res) => {
   try {
     const { title, description } = req.body;
     const gameRef = db.collection('games').doc();

@@ -1,10 +1,10 @@
-const { db } = require('../config/firebase');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
-const secretKey = 'yourSecretKey'; 
+import { db } from '../config/firebase.js';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt.js';
+import secretKey from 'yourSecretKey'; 
 
 // Registro de usuario
-exports.registerUser = async (req, res) => {
+export const registerUser = async (req, res) => {
   try {
     const { email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -17,7 +17,7 @@ exports.registerUser = async (req, res) => {
 };
 
 // Inicio de sesión de usuario
-exports.loginUser = async (req, res) => {
+export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
     const userRef = await db.collection('users').where('email', '==', email).get();
@@ -37,7 +37,7 @@ exports.loginUser = async (req, res) => {
 };
 
 // Obtener perfil del usuario
-exports.getUserProfile = async (req, res) => {
+export const getUserProfile = async (req, res) => {
   try {
     const { email } = req.user; // Decodifica el token y obtiene el email
     const userRef = await db.collection('users').where('email', '==', email).get();
