@@ -1,4 +1,4 @@
-import {db} from '../config/firebase.js';
+import {db} from '../../../server/src/config/firebase.js';
 
 // Obtener todos los juegos
 export const getAllGames = async (req, res) => {

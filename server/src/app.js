@@ -1,6 +1,6 @@
 import express from 'express';
 import gameRoutes from './routes/gameRoutes.js';
-import userRoutes from './routes/userRoutes.js';
+import userRoutes from './routes/authRoutes.js';
 
 const app = express();
 
