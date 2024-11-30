@@ -1,8 +1,8 @@
 import { Fragment } from "react/jsx-runtime";
 import { useState } from "react";
-import oro from "../assets/oro.png"
-import plata from "../assets/plata.png"
-import bronce from "../assets/bronce.png"
+import oro from "../assets/images/oro.png"
+import plata from "../assets/images/plata.png"
+import bronce from "../assets/images/bronce.png"
 
 
 export const Home = () => {
@@ -14,7 +14,7 @@ export const Home = () => {
 
     return (
         <Fragment>
-            <div className="login container d-flex">
+            <div className="login container">
                 <div className="d-flex justify-content-center bg-light rounded-5 shadow-lg p-lg-5 mt-lg-5 w-50">
                     <h1>Juegos</h1>
                 </div>
@@ -125,3 +125,5 @@ export const Home = () => {
         </Fragment>
     );
 };
+
+export default Home;

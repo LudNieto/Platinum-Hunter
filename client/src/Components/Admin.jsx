@@ -35,3 +35,5 @@ export const Admin = () => {
         </Fragment>
     )
 }
+
+export default Admin

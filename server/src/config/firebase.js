@@ -1,15 +1,14 @@
 import dotenv from 'dotenv';
 import admin from 'firebase-admin';
-import {applicationDefault } from "firebase-admin/app";
+import { applicationDefault } from 'firebase-admin/app';
 
 dotenv.config();
 
-// Initialize Firebase
 admin.initializeApp({
-  credential: applicationDefault()
+  credential: applicationDefault(),
+  projectId: process.env.FIREBASE_PROJECT_ID,
 });
 
+const db = admin.firestore();
 
-
-
-export default admin;
+export { admin, db }
