@@ -1,38 +1,45 @@
-import { Fragment } from "react"
-import { useState } from "react";
-import { loginWithEmailPassword, loginWithGoogle } from '../services/authService';
+import React, { useState, Fragment } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { loginWithEmailPassword, loginWithGoogle, registerUserInDatabase } from '../services/authService';
+import './css/components.css';
+import Navbar from './Navbar';
 
-export const LogIn = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+const LogIn = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
-    const handleEmailLogin = async () => {
+    const handleSubmit = async (event) => {
+        event.preventDefault();
         try {
             await loginWithEmailPassword(email, password);
-            // Manejar el inicio de sesión exitoso
+            // Redirigir a la vista Home después de iniciar sesión
+            navigate('/');
         } catch (error) {
-            // Manejar el error de inicio de sesión
+            alert("Error logging in: " + error.message);
         }
     };
 
     const handleGoogleLogin = async () => {
         try {
-            await loginWithGoogle();
-            // Manejar el inicio de sesión exitoso
+            const user = await loginWithGoogle();
+            await registerUserInDatabase(user);
+            // Redirigir a la vista Home después de iniciar sesión
+            navigate('/');
         } catch (error) {
-            // Manejar el error de inicio de sesión
-            console.error('Error al iniciar sesión con Google:', error);
+            alert("Error logging in with Google: " + error.message);
         }
     };
 
     return (
         <Fragment>
-            <main className="login">
-                <div className="container-login justify-content-center bg-light rounded-5 shadow-lg">
-                    <form className="form-login" onSubmit={handleEmailLogin}>
+            <Navbar />
+            <main className="login d-flex vh-100">
+                <div className="container align-self-center bg-light shadowbox rounded-5 p-5">
+                    <form className="form-login" onSubmit={handleSubmit}>
                         <h2 className="text-center mb-4">LogIn</h2>
 
-                        <div className="mb-2 col-6 mx-auto">
+                        <div className="mb-2 col-5 mx-auto">
                             <label>Email address</label>
                             <input
                                 type="email"
@@ -42,7 +49,7 @@ export const LogIn = () => {
                             />
                         </div>
 
-                        <div className="mb-2 col-6 mx-auto">
+                        <div className="mb-2 col-5 mx-auto">
                             <label>Password</label>
                             <input
                                 type="password"
@@ -51,14 +58,8 @@ export const LogIn = () => {
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
-
-                        <div className="mb-2 col-6 mx-auto">
-                            <input type="checkbox" className="form-check-input" />
-                            <label className="form-check-label">Check me out</label>
-                        </div>
-
                         <div className="d-flex justify-content-center mb-2">
-                            <button type="submit" className="btn btn-secondary mx-4" onClick={handleEmailLogin}>Submit</button>
+                            <button type="submit" className="btn btn-secondary mx-4">Submit</button>
                         </div>
 
                         <div className="d-flex justify-content-center mb-2">
@@ -71,4 +72,4 @@ export const LogIn = () => {
     );
 };
 
-export default LogIn
+export default LogIn;
