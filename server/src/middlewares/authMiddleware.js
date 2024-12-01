@@ -36,7 +36,7 @@ export const isAdmin = async (req, res, next) => {
         next();
     } catch (err) {
         res.status(500).json({
-            error: 'Failed to authenticate token.',
+            error: 'Failed to verify admin status..',
             e: {
                 code: err.code || 'auth/unknown-error',
                 message: err.message || 'An unknown error occurred while verifying admin status.'

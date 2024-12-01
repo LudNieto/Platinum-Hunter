@@ -1,5 +1,6 @@
 import { db } from '../config/firebase.js';
 import { io } from '../index.js';
+import admin from 'firebase-admin';
 
 export const getGames = async (req, res) => {
     try {
