@@ -1,3 +1,7 @@
-import {app} from './app.js';
-app.listen(3000);
-console.log('Server on port ', 3000)
+const { app } = require('./app');
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+  console.log(`Swagger docs available at http://localhost:${PORT}/api-docs`);
+});

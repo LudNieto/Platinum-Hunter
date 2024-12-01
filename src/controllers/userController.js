@@ -1,8 +1,59 @@
 const { db } = require('../config/firebase');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const secretKey = 'yourSecretKey'; 
+const secretKey = 'yourSecretKey';
 
+/**
+ * @swagger
+ * components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
+ *   schemas:
+ *     User:
+ *       type: object
+ *       required:
+ *         - email
+ *         - password
+ *       properties:
+ *         email:
+ *           type: string
+ *           description: Correo electrónico del usuario
+ *         password:
+ *           type: string
+ *           description: Contraseña del usuario
+ *       example:
+ *         email: usuario@ejemplo.com
+ *         password: contraseña123
+ */
+
+/**
+ * @swagger
+ * tags:
+ *   name: Users
+ *   description: API para gestión de usuarios
+ */
+
+/**
+ * @swagger
+ * /register:
+ *   post:
+ *     summary: Registrar un nuevo usuario
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       201:
+ *         description: Usuario registrado con éxito
+ *       500:
+ *         description: Error en el servidor
+ */
 // Registro de usuario
 exports.registerUser = async (req, res) => {
   try {
@@ -16,6 +67,46 @@ exports.registerUser = async (req, res) => {
   }
 };
 
+/**
+ * @swagger
+ * /login:
+ *   post:
+ *     summary: Inicio de sesión de usuario
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *               - password
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 description: Correo electrónico del usuario
+ *               password:
+ *                 type: string
+ *                 description: Contraseña del usuario
+ *     responses:
+ *       200:
+ *         description: Inicio de sesión exitoso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 token:
+ *                   type: string
+ *                   description: Token de autenticación
+ *       401:
+ *         description: Contraseña incorrecta
+ *       404:
+ *         description: Usuario no encontrado
+ *       500:
+ *         description: Error en el servidor
+ */
 // Inicio de sesión de usuario
 exports.loginUser = async (req, res) => {
   try {
@@ -36,6 +127,30 @@ exports.loginUser = async (req, res) => {
   }
 };
 
+/**
+ * @swagger
+ * /profile:
+ *   get:
+ *     summary: Obtener perfil del usuario
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Perfil del usuario obtenido exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 profile:
+ *                   type: object
+ *                   description: Datos del perfil del usuario
+ *       404:
+ *         description: Usuario no encontrado
+ *       500:
+ *         description: Error en el servidor
+ */
 // Obtener perfil del usuario
 exports.getUserProfile = async (req, res) => {
   try {
