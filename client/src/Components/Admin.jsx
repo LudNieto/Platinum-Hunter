@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from './Navbar';
+import { auth } from '../config/firebase.js';
 
 export const Admin = () => {
     const [nombre, setNombre] = useState('');
@@ -12,7 +13,7 @@ export const Admin = () => {
         // Obtener la lista de juegos al cargar el componente
         const fetchJuegos = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/api/games');
+                const response = await axios.get('https://platinum-hunter.onrender.com/api/games');
                 setJuegos(response.data);
             } catch (error) {
                 console.error('Error al obtener los juegos:', error);
@@ -25,8 +26,19 @@ export const Admin = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
+            const user = auth.currentUser;
+            if (!user) {
+                console.error('No user is signed in');
+                return;
+            }
+            const token = await user.getIdToken();
+            console.log(token);
             const newGame = { Nombre: nombre, Plataforma: plataforma, Genero: genero };
-            const response = await axios.post('http://localhost:3001/api/games', newGame);
+            const response = await axios.post('https://platinum-hunter.onrender.com/api/games', newGame, {
+                headers: {
+                    Authorization: `Bearer ${token}` // Envía el token en los encabezados de la solicitud
+                }
+            });
             setJuegos([...juegos, response.data]);
             setNombre('');
             setPlataforma('');

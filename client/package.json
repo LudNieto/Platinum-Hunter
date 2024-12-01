@@ -14,6 +14,7 @@
   "author": "",
   "license": "ISC",
   "description": "",
+  "proxy": "https://platinum-hunter.onrender.com/",
   "dependencies": {
     "@reduxjs/toolkit": "^2.4.0",
     "axios": "^1.7.8",

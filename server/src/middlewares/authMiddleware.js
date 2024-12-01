@@ -10,8 +10,8 @@ export const verifyToken = async (req, res, next) => {
         const decodedToken = await admin.auth().verifyIdToken(token);
         req.userId = decodedToken.uid;
         next();
-    } catch (error) {
-        res.status(500).json({ error: 'Failed to authenticate token.' });
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to authenticate token.', e: err});
     }
 };
 
