@@ -1,5 +1,51 @@
 import {db} from '../../../server/src/config/firebase.js';
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Game:
+ *       type: object
+ *       required:
+ *         - title
+ *         - description
+ *       properties:
+ *         title:
+ *           type: string
+ *           description: Título del juego
+ *         description:
+ *           type: string
+ *           description: Descripción del juego
+ *       example:
+ *         title: "Aventuras Fantásticas"
+ *         description: "Un juego de aventuras y fantasía."
+ */
+
+/**
+ * @swagger
+ * tags:
+ *   name: Games
+ *   description: API para la gestión de juegos
+ */
+
+/**
+ * @swagger
+ * /games:
+ *   get:
+ *     summary: Obtener todos los juegos
+ *     tags: [Games]
+ *     responses:
+ *       200:
+ *         description: Lista de juegos obtenida con éxito
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Game'
+ *       500:
+ *         description: Error en el servidor
+ */
 // Obtener todos los juegos
 export const getAllGames = async (req, res) => {
   try {
@@ -12,6 +58,41 @@ export const getAllGames = async (req, res) => {
   }
 };
 
+/**
+ * @swagger
+ * /games/{gameId}:
+ *   get:
+ *     summary: Obtener un juego por ID
+ *     tags: [Games]
+ *     parameters:
+ *       - in: path
+ *         name: gameId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID del juego
+ *     responses:
+ *       200:
+ *         description: Juego obtenido con éxito
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: string
+ *                   description: ID del juego
+ *                 title:
+ *                   type: string
+ *                   description: Título del juego
+ *                 description:
+ *                   type: string
+ *                   description: Descripción del juego
+ *       404:
+ *         description: Juego no encontrado
+ *       500:
+ *         description: Error en el servidor
+ */
 // Obtener un juego por ID
 export const getGameById = async (req, res) => {
   try {
@@ -26,6 +107,24 @@ export const getGameById = async (req, res) => {
   }
 };
 
+/**
+ * @swagger
+ * /games:
+ *   post:
+ *     summary: Crear un juego nuevo
+ *     tags: [Games]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Game'
+ *     responses:
+ *       201:
+ *         description: Juego creado con éxito
+ *       500:
+ *         description: Error en el servidor
+ */
 // Crear un juego nuevo
 export const createGame = async (req, res) => {
   try {
