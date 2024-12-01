@@ -23,6 +23,12 @@ Para la autenticación de usuarios en la API, proporcionando un control de acces
 #### React: 
 Se usará en el frontend para crear una interfaz de usuario dinámica y fácil de navegar.
 
+## Despliegues:
+#### cliente:
+https://platinum-hunter-1.onrender.com/
+#### Api:
+https://platinum-hunter.onrender.com/
+
 
 ## Ejecutar de forma local
 
