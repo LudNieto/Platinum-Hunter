@@ -22,7 +22,7 @@ export const verifyToken = async (req, res, next) => {
 
 export const isAdmin = async (req, res, next) => {
     try {
-        const userRecord = await admin.firestore().collection('user').doc(req.user.uid).get();
+        const userRecord = await admin.firestore().collection('users').doc(req.user.uid).get();
 
         if (!userRecord.exists) {
             return res.status(404).json({ error: 'User not found.' });
