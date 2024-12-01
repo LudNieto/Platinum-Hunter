@@ -1,5 +1,5 @@
 import express from 'express';
-import { verifyToken, isAdmin } from '../middlewares/authmiddleware.js'; // Corrected path
+import { verifyToken, isAdmin } from '../middlewares/authMiddleware.js';
 import { getGames, addGame, updateGame, deleteGame, addAchievement, updateAchievement, deleteAchievement } from '../controllers/gameController.js';
 
 const router = express.Router();

@@ -1,4 +1,3 @@
-import jwt from 'jsonwebtoken';
 import admin from 'firebase-admin';
 
 export const verifyToken = async (req, res, next) => {

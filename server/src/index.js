@@ -3,7 +3,6 @@ import cors from 'cors';
 import http from 'http';
 import { Server } from 'socket.io';
 import gameRoutes from './routes/gameRoutes.js';
-import { verifyToken } from './middlewares/authmiddleware.js'; 
 
 
 const app = express();
