@@ -7,7 +7,7 @@ export const verifyToken = async (req, res, next) => {
     }
     try {
         const decodedToken = await admin.auth().verifyIdToken(token);
-        req.userId = decodedToken.uid;
+        req.user = decodedToken;
         next();
     } catch (err) {
         res.status(500).json({
