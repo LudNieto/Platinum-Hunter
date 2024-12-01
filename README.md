@@ -4,6 +4,12 @@ Es una plataforma web sencilla que permite a los usuarios explorar juegos y logr
 logros favoritos y acceder a guías compartidas por otros usuarios, utilizando una API backend y una interfaz 
 en React. 
 
+# Integrantes:
+1. Morales Altamirano Jean Paul.
+2. Nieto Barcelo Ludwing
+3. Gonzalez Sanchez Jhon Jairo.
+4. Oscar Payares Villanueva.
+5. Alarcon Mozo Juan David.
 
 ## Tecnologías y Herramientas :
 #### Node.js y Express: 
