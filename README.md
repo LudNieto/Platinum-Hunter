@@ -6,15 +6,15 @@ en React.
 
 
 ## Tecnologías y Herramientas :
-##### Node.js y Express: 
+#### Node.js y Express: 
 Usados para construir la API del backend, facilitando la creación de rutas y controladores para la gestión de datos.
-##### Firebase Authentication: 
+#### Firebase Authentication: 
 Para gestionar el registro y autenticación de los usuarios.
-##### Cloud Firestore: 
+#### Cloud Firestore: 
 Para almacenar los datos de usuarios, juegos, logros y guías de manera organizada.
-##### JWT (JSON Web Tokens): 
+#### JWT (JSON Web Tokens): 
 Para la autenticación de usuarios en la API, proporcionando un control de acceso seguro a las rutas protegidas.
-##### React: 
+#### React: 
 Se usará en el frontend para crear una interfaz de usuario dinámica y fácil de navegar.
 
 
@@ -23,4 +23,10 @@ Se usará en el frontend para crear una interfaz de usuario dinámica y fácil d
 ```javascript
 git clone https://github.com/LudNieto/Platinum-Hunter.git
 cd Platinum-Hunter
+```
+
+
+```javascript
+npm install
+node index.js
 ```
