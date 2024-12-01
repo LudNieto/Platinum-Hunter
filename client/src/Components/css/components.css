@@ -1,0 +1,34 @@
+html, body {
+    height: 100%;
+    background: linear-gradient(135deg, #110b49, #58333c, #756868);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+    width: 100%;
+    min-height: 100vh;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+.gradiant {
+    background: linear-gradient(135deg, #110b49, #58333c, #756868);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+    width: 100%;
+    min-height: 100vh;
+    height: 100vh;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.shadowbox {
+    box-shadow: 0 0 10px rgba(177, 153, 153, 0.863);
+}
+
+.navbar {
+    background: linear-gradient(135deg, #fffefe, #5a0014);
+    background-size: 400% 400%;
+}
